@@ -9,6 +9,8 @@ public class Main {
         String command = sc.nextLine();
         if(command.equals("exit 0"))
         i = false;
+        else if(command.equals("echo"))
+        System.out.println(command);
         else
         System.out.println(command+": command not found");
         }
