@@ -22,12 +22,12 @@ public class Main {
 
             case "type": if(parts[1].equals("echo") || (parts[1].equals("exit")))
                         {
-                            System.out.println(parts[1] + "is a shell builtin");
+                            System.out.println(parts[1] + " is a shell builtin");
                             break;
                         }
                          else
                         {
-                            System.out.println(parts[1]+ "not found");
+                            System.out.println(parts[1]+ " not found");
                             break;
                         }
                          
