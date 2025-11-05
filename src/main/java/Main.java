@@ -22,19 +22,20 @@ public class Main {
             case "exit": System.exit(0);
             break;
 
-            case "type":  typeBuiltin(afterCommand);
-                            break;
+            case "type": String answer= typeBuiltin(afterCommand);
+                         System.out.println(answer);
+                         break;
                       
             default: System.out.println(command+": command not found");
         }
     }
        
     }
-    public static void typeBuiltin(String afterCommand)
+    public static String typeBuiltin(String afterCommand)
     {
         String[] builtin={"echo", "exit", "type"};
         if(java.util.Arrays.asList(builtin).contains(afterCommand))
-        System.out.println(afterCommand +" is a shell builtin");
+        return (afterCommand +" is a shell builtin");
         else 
         {
         String Path= System.getenv("PATH");
@@ -43,14 +44,10 @@ public class Main {
             java.io.File file=new File(dir,afterCommand);
             if(file.exists() && file.canExecute())
             {
-                System.out.println(afterCommand+ " is " +file.getAbsolutePath());
+                return (afterCommand+ " is " +file.getAbsolutePath());
             }
-            else
-            {
-                System.out.println(afterCommand +" : not found");
-            }
-            
         }
+        return (afterCommand +" : not found");
 
         }
 
