@@ -47,7 +47,7 @@ public class Main {
                 return (afterCommand+ " is " +file.getAbsolutePath());
             }
         }
-        return (afterCommand +" : not found");
+        return (afterCommand+ " : not found");
 
         }
 
