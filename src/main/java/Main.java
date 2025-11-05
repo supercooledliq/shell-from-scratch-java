@@ -20,7 +20,7 @@ public class Main {
             case "exit": System.exit(0);
             break;
 
-            case "type": if(parts[1].equals("echo") || (parts[1].equals("exit")))
+            case "type": if(parts[1].equals("echo") || (parts[1].equals("exit")) || (parts[1].equals("type")))
                         {
                             System.out.println(parts[1] + " is a shell builtin");
                             break;
