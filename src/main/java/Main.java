@@ -12,7 +12,11 @@ public class Main {
         String input = sc.nextLine();
         String[] parts = input.split(" ", 2);
         String command = parts[0];
-        String afterCommand=parts[1];
+        if(parts.length>1)
+        {
+               String afterCommand=parts[1];
+        }
+     
 
         switch(command)
         {
