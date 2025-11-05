@@ -10,13 +10,13 @@ public class Main {
         Scanner sc=new Scanner(System.in);
 
         String input = sc.nextLine();
+        if(input.length()==1)
+        System.out.println(input+": command not found");
+        else{
         String[] parts = input.split(" ", 2);
         String command = parts[0];
-        if(parts.length>1)
-        {
-               String afterCommand=parts[1];
-        }
-     
+        String afterCommand=parts[1];
+        
 
         switch(command)
         {
@@ -33,8 +33,9 @@ public class Main {
             default: System.out.println(command+": command not found");
         }
     }
-       
+}    
     }
+
     public static String typeBuiltin(String afterCommand)
     {
         String[] builtin={"echo", "exit", "type"};
