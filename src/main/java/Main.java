@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,7 @@ public class Main {
         String input = sc.nextLine();
         String[] parts = input.split(" ", 2);
         String command = parts[0];
+        String afterCommand=parts[1];
 
         switch(command)
         {
@@ -20,22 +22,37 @@ public class Main {
             case "exit": System.exit(0);
             break;
 
-            case "type": if(parts[1].equals("echo") || (parts[1].equals("exit")) || (parts[1].equals("type")))
-                        {
-                            System.out.println(parts[1] + " is a shell builtin");
+            case "type":  typeBuiltin(afterCommand);
                             break;
-                        }
-                         else
-                        {
-                            System.out.println(parts[1]+ " not found");
-                            break;
-                        }
-                         
-
-
+                      
             default: System.out.println(command+": command not found");
         }
     }
        
+    }
+    public static void typeBuiltin(String afterCommand)
+    {
+        String[] builtin={"echo", "exit", "type"};
+        if(java.util.Arrays.asList(builtin).contains(afterCommand))
+        System.out.println(afterCommand +" is a shell builtin");
+        else 
+        {
+        String Path= System.getenv("PATH");
+        String[] dirs= Path.split(java.io.File.pathSeparator);
+        for (String dir : dirs) {
+            java.io.File file=new File(dir,afterCommand);
+            if(file.exists() && file.canExecute())
+            {
+                System.out.println(afterCommand+ " is " +file.getAbsolutePath());
+            }
+            else
+            {
+                System.out.println(afterCommand +" : not found");
+            }
+            
+        }
+
+        }
+
     }
 }
