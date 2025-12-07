@@ -21,10 +21,10 @@ public class Main {
         String input = sc.nextLine().trim();
         String[] parts = input.split("\\s+");
         String command = parts[0];
-       // if(parts.length>1)
-       // {
+        if(parts.length>1)
+        {
              String afterCommand = parts[1];
-       // }
+        }
   
         String[] cmdargs= java.util.Arrays.copyOfRange(parts,1,parts.length);
 
