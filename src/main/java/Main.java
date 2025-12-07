@@ -31,12 +31,37 @@ public class Main {
                          System.out.println(answer);
                          break;
                       
-            default: System.out.println(command+": command not found");
+            default: runExternal(command, afterCommand);
+                 //System.out.println(command+": command not found");
         }
     }
 }
        
+ }
+    public static void runExternal(String command, String afterCommand)
+    {
+        String args[]= afterCommand.split(" ");
+        String Path= System.getenv("PATH");
+        String[] dirs= Path.split(java.io.File.pathSeparator);
+        for (String dir : dirs) {
+            java.io.File file=new File(dir,command);
+            if(file.exists() && file.canExecute())
+            {
+                String[] finalArgs= new String[args.length+1];
+                finalArgs[0] = file.getAbsolutePath();
+                System.arraycopy(args, 0, finalArgs, 1, args.length);
+
+                ProcessBuilder pb = new ProcessBuilder(finalArgs);
+                pb.inheritIO(); //so output prints to the terminal
+                try{
+                    pb.start().waitFor();
+                }catch(Exception e ){}
+                return;
+            }
     }
+    System.out.println(command + ": command not found");
+    }
+
     public static String typeBuiltin(String afterCommand)
     {
         String[] builtin={"echo", "exit", "type"};
