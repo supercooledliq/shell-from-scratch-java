@@ -48,7 +48,7 @@ public class Main {
             if(file.exists() && file.canExecute())
             {
                 String[] finalArgs= new String[args.length+1];
-                finalArgs[0] = command;
+                finalArgs[0] = file.getAbsolutePath();
                 System.arraycopy(args, 0, finalArgs, 1, args.length);
 
                 ProcessBuilder pb = new ProcessBuilder(finalArgs);
