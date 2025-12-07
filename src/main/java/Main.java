@@ -21,9 +21,10 @@ public class Main {
         String input = sc.nextLine().trim();
         String[] parts = input.split("\\s+");
         String command = parts[0];
+        String afterCommand;
         if(parts.length>1)
         {
-             String afterCommand = parts[1];
+             afterCommand = parts[1];
         }
   
         String[] cmdargs= java.util.Arrays.copyOfRange(parts,1,parts.length);
@@ -36,9 +37,17 @@ public class Main {
             case "exit": System.exit(0);
             break;
 
-            case "type": String answer= typeBuiltin(afterCommand);
+            case "type":
+                 if(afterCommand == null)
+                {
+                    System.out.println(command+": command not found");
+                    break;
+                }
+                else{
+                    String answer= typeBuiltin(afterCommand);
                          System.out.println(answer);
                          break;
+                }
                       
             default: runExternal(command, cmdargs);
                  //System.out.println(command+": command not found");
