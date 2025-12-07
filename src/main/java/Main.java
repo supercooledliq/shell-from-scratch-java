@@ -21,7 +21,7 @@ public class Main {
         String input = sc.nextLine().trim();
         String[] parts = input.split("\\s+");
         String command = parts[0];
-        String afterCommand;
+        String afterCommand = null;
         if(parts.length>1)
         {
              afterCommand = parts[1];
