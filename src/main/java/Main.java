@@ -48,6 +48,10 @@ public class Main {
                          System.out.println(answer);
                          break;
                 }
+
+            case "pwd": System.out.println(System.getProperty("user.dir"));
+                        break;
+
                       
             default: runExternal(command, cmdargs);
                  //System.out.println(command+": command not found");
@@ -82,7 +86,7 @@ public class Main {
 
     public static String typeBuiltin(String afterCommand)
     {
-        String[] builtin={"echo", "exit", "type"};
+        String[] builtin={"echo", "exit", "type","pwd"};
         if(java.util.Arrays.asList(builtin).contains(afterCommand))
         return (afterCommand +" is a shell builtin");
         else 
