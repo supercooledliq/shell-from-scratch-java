@@ -1,35 +1,57 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/70c53bcd-c9bc-44a9-afd8-a3a884cdc62f)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# Unix-Like Shell (Java)
 
-This is a starting point for Java solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
+A minimal Unix-like command-line shell implemented in Java to understand how
+shells parse commands, resolve executables via PATH, and execute processes.
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+This project focuses on core shell mechanics such as built-in commands,
+external program execution, and environment variable handling.
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+---
 
-# Passing the first stage
+## Features Implemented
 
-The entry point for your `shell` implementation is in `src/main/java/Main.java`.
-Study and uncomment the relevant code, and push your changes to pass the first
-stage:
+- Interactive REPL (Read–Eval–Print Loop)
+- Built-in commands:
+  - `echo`
+  - `exit`
+  - `type`
+  - `pwd`
+- Resolution of external commands using the system `PATH`
+- Execution of external programs with arguments
+- Differentiation between built-ins and executables
+- OS-agnostic PATH parsing using Java APIs
 
-```sh
-git commit -am "pass 1st stage" # any msg
-git push origin master
-```
+---
 
-Time to move on to the next stage!
+## How It Works
 
-# Stage 2 & beyond
+1. Reads user input from standard input
+2. Tokenizes commands and arguments
+3. Executes built-in commands directly
+4. Searches for external executables in directories listed in `PATH`
+5. Spawns processes using `ProcessBuilder` and forwards I/O to the terminal
 
-Note: This section is for stages 2 and beyond.
+---
 
-1. Ensure you have `mvn` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `src/main/java/Main.java`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+## Why This Project
+
+This project was built to gain a deeper understanding of:
+- Unix process execution
+- Shell command parsing
+- PATH-based executable resolution
+- Differences between built-in commands and external programs
+
+---
+
+## Limitations
+
+- This is not a fully POSIX-compliant shell
+- Features such as redirection, piping, and job control are not implemented
+
+---
+
+## Tech Stack
+
+- Java
+- Maven
+- Unix/Linux process model
