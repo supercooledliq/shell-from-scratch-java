@@ -45,7 +45,7 @@ This project was built to gain a deeper understanding of:
 
 ## Limitations
 
-- This is not a fully POSIX-compliant shell
+- This is not a fully POSIX-compliant shell yet
 - Features such as redirection, piping, and job control are not implemented
 
 ---
