@@ -52,13 +52,31 @@ public class Main {
             case "pwd": System.out.println(System.getProperty("user.dir"));
                         break;
 
+            case "cd": 
+                if(afterCommand.startsWith("/"))
+                {
+                    File file = new File(afterCommand);
+                  
+                  if(file.exists() && file.isDirectory())
+                  {
+                    System.setProperty("user.dir", afterCommand);
+                  }
+                  else
+                  {
+                    System.out.println("cd: "+afterCommand+": No such file or directory");
+                  }
+                }
+                else{
+                    System.out.println("cd: "+afterCommand+": No such file or directory");
+                }
+                break;
+
                       
             default: runExternal(command, cmdargs);
                  //System.out.println(command+": command not found");
         }
     }
 }
-       
  
     public static void runExternal(String command, String[] cmdargs)
     {
@@ -86,7 +104,7 @@ public class Main {
 
     public static String typeBuiltin(String afterCommand)
     {
-        String[] builtin={"echo", "exit", "type","pwd"};
+        String[] builtin={"echo", "exit", "type","pwd","cd"};
         if(java.util.Arrays.asList(builtin).contains(afterCommand))
         return (afterCommand +" is a shell builtin");
         else 
