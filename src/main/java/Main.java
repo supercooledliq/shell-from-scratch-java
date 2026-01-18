@@ -59,11 +59,11 @@ public class Main {
                 Path basePath = Paths.get(cwd);                  //turning the string into Path variable
                 Path relativePath = Paths.get(afterCommand);     //turning the Path provided as string into Path variable
                 Path resolvedPath = basePath.resolve(relativePath);  //resolving Base path and relative path
-                String resolvedPathAsString = resolvedPath.toString();  //turning resolved Path into string variable
+                String resolvedPathAsString = resolvedPath.normalize().toString();  //turning resolved Path into string variable
                 File file = new File(resolvedPathAsString);
                   if(file.exists() && file.isDirectory())
                   {
-                    System.setProperty("user.dir", resolvedPathAsString);
+                    System.setProperty("user.dir",   resolvedPathAsString);
                   }
                   else
                   {
