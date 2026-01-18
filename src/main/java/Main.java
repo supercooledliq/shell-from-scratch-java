@@ -1,5 +1,7 @@
 import java.io.File;
+import java.util.Base64;
 import java.util.Scanner;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -57,9 +59,18 @@ public class Main {
             case "cd": 
                 String cwd = System.getProperty("user.dir"); //getting the current working directory
                 Path basePath = Paths.get(cwd);                  //turning the string into Path variable
-                Path relativePath = Paths.get(afterCommand);     //turning the Path provided as string into Path variable
+                Path relativePath;
+                if(afterCommand.equals("~"))
+                {
+                    String homeDir = System.getenv("HOME");
+                    relativePath = Paths.get(homeDir);
+                }
+                else
+                {
+                    relativePath = Paths.get(afterCommand);     //turning the Path provided as string into Path variable
+                }
                 Path resolvedPath = basePath.resolve(relativePath);  //resolving Base path and relative path
-                String resolvedPathAsString = resolvedPath.normalize().toString();  //turning resolved Path into string variable
+                String resolvedPathAsString = resolvedPath.normalize().toString();  //turning resolved Path into string variable and .normalize() to remove occurences of './' or '../'
                 File file = new File(resolvedPathAsString);
                   if(file.exists() && file.isDirectory())
                   {
