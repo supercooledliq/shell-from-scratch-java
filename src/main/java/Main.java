@@ -1,5 +1,7 @@
 import java.io.File;
 import java.util.Scanner;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -53,23 +55,21 @@ public class Main {
                         break;
 
             case "cd": 
-                if(afterCommand.startsWith("/"))
-                {
-                    File file = new File(afterCommand);
-                  
+                String cwd = System.getProperty("user.dir"); //getting the current working directory
+                Path basePath = Paths.get(cwd);                  //turning the string into Path variable
+                Path relativePath = Paths.get(afterCommand);     //turning the Path provided as string into Path variable
+                Path resolvedPath = basePath.resolve(relativePath);  //resolving Base path and relative path
+                String resolvedPathAsString = resolvedPath.toString();  //turning resolved Path into string variable
+                File file = new File(resolvedPathAsString);
                   if(file.exists() && file.isDirectory())
                   {
-                    System.setProperty("user.dir", afterCommand);
+                    System.setProperty("user.dir", resolvedPathAsString);
                   }
                   else
                   {
                     System.out.println("cd: "+afterCommand+": No such file or directory");
                   }
-                }
-                else{
-                    System.out.println("cd: "+afterCommand+": No such file or directory");
-                }
-                break;
+                  break;
 
                       
             default: runExternal(command, cmdargs);
